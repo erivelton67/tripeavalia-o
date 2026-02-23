@@ -47,6 +47,13 @@
         .guarantee-badge { width: 50px; margin-right: 15px; }
         .guarantee-text { text-align: left; font-size: 12px; line-height: 1.3; }
         .question-text { font-size: 24px; font-weight: 900; margin-bottom: 20px; line-height: 1.3; }
+        
+        /* Forçar vídeo Wistia a não abrir popover */
+        .wistia_embed { position: relative !important; }
+        .wistia_click_to_play { display: none !important; }
+        button[aria-label="Play Video"] { pointer-events: auto !important; }
+        .w-vulcan-v2-button { display: none !important; }
+        .w-css-reset button[aria-label*="fullscreen"] { display: none !important; }
     </style>
 </head>
 <body>
@@ -338,6 +345,14 @@
         console.log('🇧🇷 Quiz iniciado - Português');
         console.log('🎯 Checkout:', CHECKOUT_URL);
         render();
+
+        // Desabilitar popover do Wistia
+        window._wq = window._wq || [];
+        _wq.push({ id: "8qxcoc6a4p", onReady: function(video) {
+            video.popover(false); // Desabilita popover
+            video.suppressPopover = true;
+            console.log('📹 Vídeo configurado - Popover desabilitado');
+        }});
     </script>
 </body>
 </html>
